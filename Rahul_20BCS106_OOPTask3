@@ -1,0 +1,240 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled2.ipynb",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyPA2xvfUIipS1iWBqBXoJ6R"
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "fKgAI36TpfCw"
+      },
+      "source": [
+        "1)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uV5ahqO3pgAc",
+        "outputId": "442a21cf-21df-42e5-af85-c5e58b8c1014"
+      },
+      "source": [
+        "class student:\n",
+        "    def __init__(self, name, regno, age, gender, branch, sem):\n",
+        "        self.name = name\n",
+        "        self.regno = regno\n",
+        "        self.age = age\n",
+        "        self.gender = gender\n",
+        "        self.branch = branch\n",
+        "        self.sem = sem\n",
+        "    \n",
+        "    def display(self):\n",
+        "        print(f\"Name- {self.name}\\nReg no- {self.regno}\\nAge- {self.age}\\nGender- {self.gender}\\nBranch- {self.branch}\\nSemester- {self.sem}\")\n",
+        "\n",
+        "class studentsresultinfo(student):\n",
+        "    def __init__(self, name, regno, age, gender, branch, sem, totalmarks, percentage, grade):\n",
+        "        student.__init__(self, name, regno, age, gender, branch, sem)\n",
+        "        self.totalmarks = totalmarks\n",
+        "        self.percentage = percentage\n",
+        "        self.grade = grade\n",
+        "\n",
+        "    @classmethod\n",
+        "    def inputdetails(cls):\n",
+        "        name = input(\"Enter name- \")\n",
+        "        regno = int(input(\"Enter reg no- \"))\n",
+        "        age = int(input(\"Enter age- \"))\n",
+        "        gender = input(\"Enter gender- \")\n",
+        "        branch = input(\"Enter branch- \")\n",
+        "        sem = int(input(\"Enter semester- \"))\n",
+        "        totalmarks = int(input(\"Enter total marks- \"))\n",
+        "        percentage = int(input(\"Enter percentage- \"))\n",
+        "        grade = input(\"Enter grade- \")\n",
+        "        return studentsresultinfo(name, regno, age, gender, branch, sem, totalmarks, percentage, grade)\n",
+        "\n",
+        "\n",
+        "    def display(self):\n",
+        "        print(f\"Name- {self.name}\\nReg no- {self.regno}\\nAge- {self.age}\\nGender- {self.gender}\\nBranch- {self.branch}\\nSemester- {self.sem}\")\n",
+        "        print(f\"Total marks- {self.totalmarks}\\nPercentage- {self.percentage}\\nGrade- {self.grade}\")\n",
+        "    \n",
+        "s1 = studentsresultinfo.inputdetails()\n",
+        "s1.display()"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter name- Rahul\n",
+            "Enter reg no- 26\n",
+            "Enter age- 19\n",
+            "Enter gender- male\n",
+            "Enter branch- cse\n",
+            "Enter semester- 3\n",
+            "Enter total marks- 98\n",
+            "Enter percentage- 98\n",
+            "Enter grade- a\n",
+            "Name- Rahul\n",
+            "Reg no- 26\n",
+            "Age- 19\n",
+            "Gender- male\n",
+            "Branch- cse\n",
+            "Semester- 3\n",
+            "Total marks- 98\n",
+            "Percentage- 98\n",
+            "Grade- a\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "hed5tYe31Yyb"
+      },
+      "source": [
+        "2)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "CakgKFzM1aAw",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "outputId": "312dfb6c-96c3-47b9-825c-84bdf492e154"
+      },
+      "source": [
+        "class contentmanagementsystem:\n",
+        "    maxsize = 30\n",
+        "    maxdimensions = [1080, 720]\n",
+        "    def __init__(self, creator, description, filesize):\n",
+        "        self.creator = creator\n",
+        "        self.description = description\n",
+        "        self.filesize = filesize\n",
+        "\n",
+        "    def checksize(self):\n",
+        "        if self.filesize > contentmanagementsystem.maxsize:\n",
+        "            print(f\"File size is beyond specified limit\")\n",
+        "        else:\n",
+        "            print(f\"File size is in limit\")\n",
+        "\n",
+        "class pdf(contentmanagementsystem):\n",
+        "    def __init__(self, creator, description, filesize):\n",
+        "        super().__init__(creator, description, filesize)\n",
+        "\n",
+        "    def details(self):\n",
+        "        print(f\"Creator- {self.creator}\\nDescription- {self.description}\\nFile size- {self.filesize}\")\n",
+        "    \n",
+        "class picture(contentmanagementsystem):\n",
+        "    def __init__(self, creator, description, filesize, imagedimensions):\n",
+        "        super().__init__(creator, description, filesize)\n",
+        "        self.imagedimensions = imagedimensions\n",
+        "\n",
+        "    def details(self):\n",
+        "        print(f\"Creator- {self.creator}\\nDescription- {self.description}\\nDimensions- {self.imagedimensions}\\nFile size- {self.filesize}\")\n",
+        "\n",
+        "    def checkdimensions(self):\n",
+        "        if self.imagedimensions[0] <= contentmanagementsystem.maxdimensions[0] and self.imagedimensions[1] <= contentmanagementsystem.maxdimensions[1]:\n",
+        "            print(\"Image dimensions is in specified limit\")\n",
+        "        else:\n",
+        "            print(\"Image dimensions is beyond specified limit\")\n",
+        "\n",
+        "doc = pdf(\"rahul\", \"assignment\", 25)\n",
+        "img = picture(\"rahul\", \"assignment\", 10, [480, 480])\n",
+        "doc.details()\n",
+        "doc.checksize()\n",
+        "img.details()\n",
+        "img.checksize()\n",
+        "img.checkdimensions()"
+      ],
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Creator- rahul\n",
+            "Description- assignment\n",
+            "File size- 25\n",
+            "File size is in limit\n",
+            "Creator- rahul\n",
+            "Description- assignment\n",
+            "Dimensions- [480, 480]\n",
+            "File size- 10\n",
+            "File size is in limit\n",
+            "Image dimensions is in specified limit\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "6lue0X5Q7mho"
+      },
+      "source": [
+        "3)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RE1Ncjhj7nWv",
+        "outputId": "856b1fc7-c4aa-4f39-883c-6e1df72e80cd"
+      },
+      "source": [
+        "class vehicle:\n",
+        "\n",
+        "    def __init__(self, name, mileage, capacity):\n",
+        "        self.name = name\n",
+        "        self.mileage = mileage\n",
+        "        self.capacity = capacity\n",
+        "\n",
+        "class bus(vehicle):\n",
+        "\n",
+        "    def __init__(self, name, mileage, capacity):\n",
+        "        super().__init__(name, mileage, capacity)\n",
+        "\n",
+        "    def busfare(self):\n",
+        "        finalamount = 1.1 * (self.capacity * 100)\n",
+        "        print(f\"Total fare is {finalamount}\")\n",
+        "    \n",
+        "b1 = bus(\"benz\", 20, 50)\n",
+        "b1.busfare()   \n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Total fare is 5500.0\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
